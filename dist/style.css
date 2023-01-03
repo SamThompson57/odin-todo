@@ -1,0 +1,11 @@
+.mainTable{
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    margin: 20px;
+}
+
+.mainTable > div {
+    border: solid 1px black;
+    text-align: center;
+    padding: 5px;
+}
