@@ -1,20 +1,35 @@
-// This will be a list of the main tables Items. the list should have the title, description, Start date, Delivery date and Outstanding Tasks
+/* eslint-disable no-unused-vars */
+import container from './newproj';
 
-function Project (title, desc, start, end, outstanding) {
-    this.title = title
-    this.description = desc
-    this.start = start
-    this.end = end
-    this.outstanding = outstanding
+const myProjects = [];
 
+function Project(title) {
+  this.title = title;
+  this.tasks = [];
+  myProjects.push(this);
+  // Function to refresh list of
 }
 
-const example1 = new Project('Example', 'A description of the project', '02/01/23', '10/01/23', 5)
+function Activity(parent, task, description, dueDate, priority, notes) {
+  this.title = task;
+  this.description = description;
+  this.dueDate = dueDate;
+  this.priority = priority;
+  this.notes = notes;
+  parent.tasks.push(this);
+}
 
-const projectList = []
-projectList.push(example1)
+// eslint-disable-next-line no-unused-vars
+function formSubmit() {
+  console.log('Submitting form for new Project');
+  // eslint-disable-next-line no-new
+  new Project(projTitleInput.value);
+  projTitleInput.value = '';
+}
 
+const project1 = new Project('Project1');
+const project2 = new Project('Project2');
 
-export default projectList // This should be an array of objects
+const defaultTaskOne = new Activity(project1, 'Default Task', 'A Default Task', '10/01/23', '4', 'Notes go here');
 
-// This list will be exported to the maintable .js and a funciotn will need to be exported to add additional projects
+export default myProjects;
