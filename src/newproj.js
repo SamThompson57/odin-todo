@@ -1,14 +1,21 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-new */
+/* eslint-disable import/no-duplicates */
+// eslint-disable-next-line prefer-destructuring
+import { Project } from './projects';
+import myProjects from './projects';
+import displayProjects from './index';
+
 let isBoxSpawned = false;
 
 const container = document.createElement('div');
 const newProjectBtn = document.createElement('button');
 
 container.appendChild(newProjectBtn);
-
+newProjectBtn.setAttribute('class', 'navButton');
 // Build the form to add additional projects.
 const projectForm = document.createElement('form');
-projectForm.setAttribute('onsubmit', 'event.preventDefault(); formSubmit()');
-
+projectForm.setAttribute('onsubmit', 'event.preventDefault()');
 container.appendChild(projectForm);
 
 const addNewProj = document.createElement('div');
@@ -24,7 +31,7 @@ const projTitleInput = document.createElement('input');
 projTitleInput.setAttribute('type', 'text');
 projTitleInput.setAttribute('id', 'proj_title');
 projTitleInput.setAttribute('required', 'true');
-projTitleInput.setAttribute('value', 'Project 3');
+projTitleInput.setAttribute('value', 'Project3');
 addNewProj.appendChild(projTitleInput);
 
 const addDiv = document.createElement('div');
@@ -34,7 +41,7 @@ const addButton = document.createElement('button');
 addButton.setAttribute('type', 'submit');
 addButton.textContent = 'add';
 addDiv.appendChild(addButton);
-
+addButton.setAttribute('class', 'navButton');
 projectForm.setAttribute('style', 'visibility: hidden;');
 
 function spawnBox() {
@@ -52,16 +59,17 @@ function spawnBox() {
   }
 }
 
-/*
-CURRENTLY HAVING ISSUES WITH THE FUNCTION TO ADD PROJECT
-
 function formSubmit() {
-  console.log('Submitting form for new Project');
-  // new Project(projTitleInput.value);
+  new Project(projTitleInput.value);
   projTitleInput.value = '';
-} */
+  console.log(myProjects);
+  displayProjects();
+}
 
 newProjectBtn.textContent = 'NEW PROJECT';
+
+// projectForm.onsubmit(formSubmit());
+addButton.addEventListener('click', formSubmit);
 
 newProjectBtn.onclick = () => spawnBox();
 

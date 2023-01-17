@@ -1,9 +1,11 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import myProjects from './projects';
 import container from './newproj';
+import vpGen from './activityview';
 
 const content = document.getElementById('content');
 
@@ -23,32 +25,36 @@ content.appendChild(veiwPort);
 navBar.appendChild(navBarTitle);
 // GOING TO DISPLAY ALL OUTSTANDING TASKS
 
-function displayTasks(name) {
-  // const id = name.tasks.length - 1;
-  console.log(`Displaying tasks for ${name.title}`);
-  for (const prop in name.tasks) {
-    for (const item in name.tasks[prop]) {
-      console.log(name.tasks[prop][item]);
-    }
-  }
-}
+// Create a div to contain the project list
+
+const projDiv = document.createElement('div');
+projDiv.setAttribute('class', 'projDiv');
+navBar.appendChild(projDiv);
 
 function displayProjects() {
+  while (projDiv.firstChild) {
+    projDiv.removeChild(projDiv.firstChild);
+  }
+  navBar.removeChild(container);
   for (const prop in myProjects) {
     const menuItem = document.createElement('ul');
     menuItem.textContent = myProjects[prop].title;
-    navBar.appendChild(menuItem);
+    projDiv.appendChild(menuItem);
     console.log(`Displaying ${prop.indexOf}`);
   }
   navBar.appendChild(container);
 }
-
+navBar.appendChild(container);
 displayProjects();
 
-displayTasks(myProjects[0]);
+veiwPort.appendChild(vpGen(myProjects[0]));
+
+export default displayProjects;
 
 /*
-FUNCTIONS
-    -   Create new project
-    -   Create new task in the current project
-    -   Edit Tasks (Close, Cancel, Delete) */
+WHATS LEFT
+  -   Task list layout (Should only display title and Due by date)
+  -   Select projects from the menu
+  -   Button to Create a new task in the current project
+  -   Edit Tasks (Close, Cancel, Delete)
+  -   Message for an empty project */

@@ -1,13 +1,13 @@
+/* eslint-disable no-new */
 /* eslint-disable no-unused-vars */
-import container from './newproj';
-
 const myProjects = [];
+const exports = {};
 
-function Project(title) {
+export function Project(title) {
+  console.log(`Adding project with Title: ${title}`);
   this.title = title;
   this.tasks = [];
   myProjects.push(this);
-  // Function to refresh list of
 }
 
 function Activity(parent, task, description, dueDate, priority, notes) {
@@ -16,20 +16,14 @@ function Activity(parent, task, description, dueDate, priority, notes) {
   this.dueDate = dueDate;
   this.priority = priority;
   this.notes = notes;
+  this.complete = false;
   parent.tasks.push(this);
-}
-
-// eslint-disable-next-line no-unused-vars
-function formSubmit() {
-  console.log('Submitting form for new Project');
-  // eslint-disable-next-line no-new
-  new Project(projTitleInput.value);
-  projTitleInput.value = '';
 }
 
 const project1 = new Project('Project1');
 const project2 = new Project('Project2');
 
-const defaultTaskOne = new Activity(project1, 'Default Task', 'A Default Task', '10/01/23', '4', 'Notes go here');
+const defaultTaskOne = new Activity(project1, 'Task1', 'A Default Task', '10/01/23', '4', 'Notes go here');
+const defaultTaskTwo = new Activity(project1, 'Task2', 'A Default Task', '10/01/23', '2', 'Notes go here');
 
 export default myProjects;
