@@ -6,12 +6,13 @@
 import myProjects from './projects';
 import container from './newproj';
 import vpGen from './activityview';
+import controls from './newact';
 
 const content = document.getElementById('content');
 
 // Main Page will be broken into a nav bar with the list of projects.
 const navBar = document.createElement('div');
-const veiwPort = document.createElement('div');
+export const veiwPort = document.createElement('div');
 
 const navBarTitle = document.createElement('div');
 navBarTitle.textContent = 'PROJECTS';
@@ -47,14 +48,18 @@ function displayProjects() {
 navBar.appendChild(container);
 displayProjects();
 
-veiwPort.appendChild(vpGen(myProjects[0]));
+export const currentProject = myProjects[0];
+// eslint-disable-next-line prefer-const, import/no-mutable-exports
+export let activities = vpGen(currentProject);
+
+veiwPort.appendChild(activities);
+veiwPort.appendChild(controls);
 
 export default displayProjects;
 
 /*
 WHATS LEFT
-  -   Task list layout (Should only display title and Due by date)
   -   Select projects from the menu
-  -   Button to Create a new task in the current project
+  -   Button to Create a new task in the current project IN PROGRESS
   -   Edit Tasks (Close, Cancel, Delete)
   -   Message for an empty project */

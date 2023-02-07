@@ -10,7 +10,7 @@ export function Project(title) {
   myProjects.push(this);
 }
 
-function Activity(parent, task, description, dueDate, priority, notes) {
+export function Activity(parent, task, description, dueDate, priority, notes) {
   this.title = task;
   this.description = description;
   this.dueDate = dueDate;
@@ -23,7 +23,7 @@ function Activity(parent, task, description, dueDate, priority, notes) {
 const project1 = new Project('Project1');
 const project2 = new Project('Project2');
 
-const defaultTaskOne = new Activity(project1, 'Task1', 'A Default Task', '10/01/23', '4', 'Notes go here');
+const defaultTaskOne = new Activity(project1, 'Task1', 'A Default Task', '10/01/23', '3', 'Notes go here');
 const defaultTaskTwo = new Activity(project1, 'Task2', 'A Default Task', '10/01/23', '2', 'Notes go here');
 
 export default myProjects;
