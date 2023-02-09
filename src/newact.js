@@ -42,12 +42,25 @@ priorityLabel.setAttribute('for', 'priority');
 priorityLabel.textContent = 'Priority:'
 newActPriority.appendChild(priorityLabel)
 
-const priorityInput = document.createElement('input')
-priorityInput.setAttribute('type', 'text')
-priorityInput.setAttribute('id', 'priority')
-newActPriority.appendChild(priorityInput)
+const prioritySelect = document.createElement('select')
+newActPriority.appendChild(prioritySelect)
 
-//DUE DATE (Shoould be a calendar selection)
+
+const priorityInput3 = document.createElement('option')
+const priorityInput2 = document.createElement('option')
+const priorityInput1 = document.createElement('option')
+priorityInput3.setAttribute('value', '3')
+priorityInput3.setAttribute('selected', true)
+priorityInput3.textContent = '3 (Low)'
+priorityInput2.setAttribute('value', '2')
+priorityInput2.textContent = '2'
+priorityInput1.setAttribute('value', '1')
+priorityInput1.textContent = '1 (High)'
+prioritySelect.appendChild(priorityInput3)
+prioritySelect.appendChild(priorityInput2)
+prioritySelect.appendChild(priorityInput1)
+
+//DUE DATE
 const newActDate = document.createElement('div');
 newActDate.setAttribute('class', 'input');
 actForm.appendChild(newActDate);
@@ -58,8 +71,9 @@ dateLabel.textContent = 'Due Date:'
 newActDate.appendChild(dateLabel)
 
 const dateInput = document.createElement('input')
-dateInput.setAttribute('type', 'text')
+dateInput.setAttribute('type', 'date')
 dateInput.setAttribute('id', 'date')
+dateInput.setAttribute('value', '2023-01-01')
 newActDate.appendChild(dateInput)
 
 //The submit Button
@@ -91,7 +105,7 @@ function spawnActBox() {
 
 function actFormSubmit() {
   //Need to add validation to make sure no empty fields are submitted
-  new Activity(currentProject, actTitleInput.value, '', dateInput.value, priorityInput.value, '');
+  new Activity(currentProject, actTitleInput.value, '', dateInput.value.split('-').reverse().join(' / '), prioritySelect.value, '');
 
   console.log(currentProject)
   actRefresh()

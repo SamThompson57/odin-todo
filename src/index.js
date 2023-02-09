@@ -1,3 +1,5 @@
+/* eslint-disable import/no-mutable-exports */
+/* eslint-disable no-loop-func */
 /* eslint-disable import/no-cycle */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
@@ -32,34 +34,41 @@ const projDiv = document.createElement('div');
 projDiv.setAttribute('class', 'projDiv');
 navBar.appendChild(projDiv);
 
+export let currentProject = myProjects[0];
+export let activities = vpGen(currentProject);
+
+veiwPort.appendChild(activities);
+veiwPort.appendChild(controls);
+
 function displayProjects() {
   while (projDiv.firstChild) {
     projDiv.removeChild(projDiv.firstChild);
   }
   navBar.removeChild(container);
   for (const prop in myProjects) {
+    const id = prop;
     const menuItem = document.createElement('ul');
     menuItem.textContent = myProjects[prop].title;
     projDiv.appendChild(menuItem);
-    console.log(`Displaying ${prop.indexOf}`);
+    // Add the funtion for if the project is selected
+    menuItem.onclick = () => {
+      veiwPort.removeChild(activities);
+      currentProject = myProjects[id];
+      activities = vpGen(myProjects[id]);
+      veiwPort.insertBefore(activities, controls);
+    };
   }
   navBar.appendChild(container);
 }
 navBar.appendChild(container);
 displayProjects();
 
-export const currentProject = myProjects[0];
-// eslint-disable-next-line prefer-const, import/no-mutable-exports
-export let activities = vpGen(currentProject);
-
-veiwPort.appendChild(activities);
-veiwPort.appendChild(controls);
-
 export default displayProjects;
 
 /*
 WHATS LEFT
-  -   Select projects from the menu
-  -   Button to Create a new task in the current project IN PROGRESS
+  -   Button to Create a new task in the current project
   -   Edit Tasks (Close, Cancel, Delete)
-  -   Message for an empty project */
+  -   Message for an empty project
+  -   Symbol for not completed.
+  */

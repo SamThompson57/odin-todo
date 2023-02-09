@@ -20,7 +20,9 @@ function vpGen(project) {
   taskView.appendChild(actTable);
   if (project.tasks.length === 0) {
     const emptyProject = document.createElement('div');
-    emptyProject.textContent = 'There is nothing here use the button below to add tasks to this project.'
+    emptyProject.setAttribute('class', 'emptyProj')
+    emptyProject.textContent = 'There is nothing here, use the button below to add tasks to this project.'
+    taskView.appendChild(emptyProject)
   } else {
     // Add the headings for the columns here: Priority, Task name, Due Date, and completion status. 
     const actViewHead = document.createElement('div');
