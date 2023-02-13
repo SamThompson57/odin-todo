@@ -1,5 +1,7 @@
 // This will be the content of the view port will be generated,
 
+import editAct from "./actedit";
+
 // Iterrate through tthe current selection of the projects Tab and for each item build a table
 
 
@@ -66,6 +68,10 @@ function vpGen(project) {
     activityLine.appendChild(actName)
     activityLine.appendChild(actDue)
     activityLine.appendChild(actComp)
+
+    activityLine.onclick = () => {
+      activityLine.appendChild(editAct(project.tasks[prop]))
+    };
 
     //This is where we can add an event listener to expand the 
 

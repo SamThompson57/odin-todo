@@ -73,7 +73,7 @@ function editAct(selectedAct) {
 
   const editDescLabel = document.createElement('label');
   editDescLabel.setAttribute('for', 'edit_desc');
-  editDescLabel.textContent = 'Task Name:';
+  editDescLabel.textContent = 'Description:';
   editActDesc.appendChild(editDescLabel);
 
   const editDescInput = document.createElement('input');
@@ -81,9 +81,67 @@ function editAct(selectedAct) {
   editDescInput.setAttribute('id', 'edit_desc');
   editDescInput.setAttribute('value', selectedAct.description);
   editActDesc.appendChild(editDescInput);
+
   // Current notes
+
+  const editActNote = document.createElement('div');
+  editActNote.setAttribute('class', 'input');
+  editActForm.appendChild(editActNote);
+
+  const editNoteLabel = document.createElement('label');
+  editNoteLabel.setAttribute('for', 'edit_note');
+  editNoteLabel.textContent = 'Note:';
+  editActNote.appendChild(editNoteLabel);
+
+  const editNoteInput = document.createElement('input');
+  editNoteInput.setAttribute('type', 'text');
+  editNoteInput.setAttribute('id', 'edit_note');
+  editNoteInput.setAttribute('value', selectedAct.note);
+  editActNote.appendChild(editNoteInput);
+
   // Current Status
-  // Delete Activity
+
+  const editActStatus = document.createElement('div');
+  editActStatus.setAttribute('class', 'input');
+  editActForm.appendChild(editActStatus);
+
+  const editStatusLabel = document.createElement('label');
+  editStatusLabel.setAttribute('for', 'status');
+  editStatusLabel.textContent = 'Status:';
+  editActStatus.appendChild(editStatusLabel);
+
+  const editStatusSelect = document.createElement('select');
+  editActStatus.appendChild(editStatusSelect);
+
+  const editStatusInput3 = document.createElement('option');
+  const editStatusInput2 = document.createElement('option');
+  const editStatusInput1 = document.createElement('option');
+  editStatusInput3.setAttribute('value', 'Not Started');
+  editStatusInput3.setAttribute('selected', true); // Find way for this to be the currently selected
+  editStatusInput3.textContent = 'Not Started';
+  editStatusInput2.setAttribute('value', 'In Progress');
+  editStatusInput2.textContent = 'In Progress';
+  editStatusInput1.setAttribute('value', 'Completed');
+  editStatusInput1.textContent = 'Completed';
+  editStatusSelect.appendChild(editStatusInput3);
+  editStatusSelect.appendChild(editStatusInput2);
+  editStatusSelect.appendChild(editStatusInput1);
+
+  switch (selectedAct.complete) {
+    case 'Completed':
+      editStatusInput1.setAttribute('selected', true);
+      break;
+    case 'In Progress':
+      editStatusInput2.setAttribute('selected', true);
+      break;
+    case 'Not Started':
+      editStatusInput3.setAttribute('selected', true);
+      break;
+    default:
+      console.log('Current Status not set');
+  }
+
+  // CONTROLS: Save / Delete
 
   editActDiv.appendChild(editActForm);
   return editActDiv;
