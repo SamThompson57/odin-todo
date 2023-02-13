@@ -34,7 +34,7 @@ function vpGen(project) {
     prioHead.textContent = 'Priority';
     taskHead.textContent = 'Task Name';
     dueHead.textContent = 'Due Date';
-    compHead.textContent = 'Completed';
+    compHead.textContent = 'Current Status';
 
     actTable.appendChild(actViewHead)
     actViewHead.appendChild(prioHead);
@@ -42,9 +42,6 @@ function vpGen(project) {
     actViewHead.appendChild(dueHead)
     actViewHead.appendChild(compHead)
     actViewHead.setAttribute('class', 'actLine head')
-
-    //UNDER THIS WE CAN ADD THE HIDDDEN ELEMENTS /Edit tab
-    
   }
   for (const prop in project.tasks) {
     //Create an activity line for the Key elements: Priority, name, due, completion 
@@ -69,6 +66,8 @@ function vpGen(project) {
     activityLine.appendChild(actName)
     activityLine.appendChild(actDue)
     activityLine.appendChild(actComp)
+
+    //This is where we can add an event listener to expand the 
 
   }
   

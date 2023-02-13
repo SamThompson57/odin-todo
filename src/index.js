@@ -67,8 +67,6 @@ export default displayProjects;
 
 /*
 WHATS LEFT
-  -   Button to Create a new task in the current project
   -   Edit Tasks (Close, Cancel, Delete)
-  -   Message for an empty project
   -   Symbol for not completed.
   */

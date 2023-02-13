@@ -16,7 +16,7 @@ export function Activity(parent, task, description, dueDate, priority, notes) {
   this.dueDate = dueDate;
   this.priority = priority;
   this.notes = notes;
-  this.complete = false;
+  this.complete = 'Not Started';
   parent.tasks.push(this);
 }
 

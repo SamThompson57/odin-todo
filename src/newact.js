@@ -28,8 +28,7 @@ addNewAct.appendChild(actTitleLabel);
 const actTitleInput = document.createElement('input');
 actTitleInput.setAttribute('type', 'text');
 actTitleInput.setAttribute('id', 'act_title');
-actTitleInput.setAttribute('required', 'true');
-actTitleInput.setAttribute('value', 'Task3');
+actTitleInput.setAttribute('value', 'A New Task');
 addNewAct.appendChild(actTitleInput);
 
 //PRIORITY (Should be a drop down Fix Later)

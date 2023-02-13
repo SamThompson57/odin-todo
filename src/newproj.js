@@ -31,7 +31,7 @@ const projTitleInput = document.createElement('input');
 projTitleInput.setAttribute('type', 'text');
 projTitleInput.setAttribute('id', 'proj_title');
 projTitleInput.setAttribute('required', 'true');
-projTitleInput.setAttribute('value', 'Project3');
+projTitleInput.setAttribute('value', 'New Project');
 addNewProj.appendChild(projTitleInput);
 
 const addDiv = document.createElement('div');
