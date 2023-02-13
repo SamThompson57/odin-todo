@@ -5,6 +5,7 @@
 function editAct(selectedAct) {
   // Remove previous displayed acts
   const editActDiv = document.createElement('div');
+  editActDiv.setAttribute('class', 'editact');
   const editActForm = document.createElement('form');
   // The form needs to allow us to edit the below:
   // Priority
@@ -62,7 +63,7 @@ function editAct(selectedAct) {
   const editDateInput = document.createElement('input');
   editDateInput.setAttribute('type', 'date');
   editDateInput.setAttribute('id', 'edit_date');
-  editDateInput.setAttribute('value', selectedAct.dueDate);
+  editDateInput.setAttribute('value', selectedAct.dueDate.split(' / ').reverse().join('-'));
   editActDate.appendChild(editDateInput);
 
   // Description
@@ -96,7 +97,7 @@ function editAct(selectedAct) {
   const editNoteInput = document.createElement('input');
   editNoteInput.setAttribute('type', 'text');
   editNoteInput.setAttribute('id', 'edit_note');
-  editNoteInput.setAttribute('value', selectedAct.note);
+  editNoteInput.setAttribute('value', selectedAct.notes);
   editActNote.appendChild(editNoteInput);
 
   // Current Status

@@ -68,12 +68,18 @@ function vpGen(project) {
     activityLine.appendChild(actName)
     activityLine.appendChild(actDue)
     activityLine.appendChild(actComp)
+    // Expand the box
+
+    let isExpanded = false
 
     activityLine.onclick = () => {
-      activityLine.appendChild(editAct(project.tasks[prop]))
+      if (!isExpanded){
+        activityLine.appendChild(editAct(project.tasks[prop]))
+        isExpanded = true
+      }
+     
     };
 
-    //This is where we can add an event listener to expand the 
 
   }
   
