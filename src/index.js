@@ -67,6 +67,8 @@ export default displayProjects;
 
 /*
 WHATS LEFT
+  -   Activity expand
   -   Edit Tasks (Close, Cancel, Delete)
+  -   Delete Projects
   -   Symbol for not completed.
   */

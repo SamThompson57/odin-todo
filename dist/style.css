@@ -75,14 +75,14 @@
     margin: 20px;
 }
 
-.editact{
+#editact{
     grid-column-start: 1;
     grid-column-end: 5;
     background-color: white;
     border: solid 2px lightblue;
 }
 
-.editact > form {
+#editact > form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }

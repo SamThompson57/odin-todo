@@ -1,15 +1,22 @@
 // This will be the content of the view port will be generated,
 
 import editAct from "./actedit";
+import collapseCurrentAct from "./collapseact";
 
 // Iterrate through tthe current selection of the projects Tab and for each item build a table
 
+let currentAct = '';
 
+export function resetAct(){
+  currentAct = ''
+  console.log(`Current act = ${currentAct}`)
+}
 
 function vpGen(project) {
 
   const taskView = document.createElement('div')
 
+  
   // Start by putting the Title of the project at the top of the page
   const pTitle = document.createElement('div');
   pTitle.setAttribute('class', 'ptitle');
@@ -70,14 +77,16 @@ function vpGen(project) {
     activityLine.appendChild(actComp)
     // Expand the box
 
-    let isExpanded = false
-
     activityLine.onclick = () => {
-      if (!isExpanded){
+      if (currentAct === ''){
         activityLine.appendChild(editAct(project.tasks[prop]))
-        isExpanded = true
+        currentAct = prop
+      }else if (currentAct !== prop ){
+        //need to collapse any open
+        collapseCurrentAct()
+        activityLine.appendChild(editAct(project.tasks[prop]))
+        currentAct = prop
       }
-     
     };
 
 

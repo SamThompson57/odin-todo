@@ -1,12 +1,17 @@
+/* eslint-disable import/no-cycle */
 // This is where we look to create a form that users can edit activities
+
+import collapseCurrentAct from './collapseact';
 
 // Start by removing all the child nodes from all the expanded children
 
 function editAct(selectedAct) {
+  console.log('Building Acts');
   // Remove previous displayed acts
   const editActDiv = document.createElement('div');
-  editActDiv.setAttribute('class', 'editact');
+  editActDiv.setAttribute('id', 'editact');
   const editActForm = document.createElement('form');
+  editActForm.setAttribute('onsubmit', 'event.preventDefault()');
   // The form needs to allow us to edit the below:
   // Priority
   const editActPriority = document.createElement('div');
@@ -143,6 +148,31 @@ function editAct(selectedAct) {
   }
 
   // CONTROLS: Save / Delete
+  const actControlDiv = document.createElement('div');
+  actControlDiv.setAttribute('class', 'actcontrol');
+  editActForm.appendChild(actControlDiv);
+
+  const saveAct = document.createElement('button');
+  const deleteAct = document.createElement('button');
+  const collapseAct = document.createElement('button');
+
+  collapseAct.setAttribute('type', 'button');
+
+  actControlDiv.appendChild(saveAct);
+  actControlDiv.appendChild(collapseAct);
+  actControlDiv.appendChild(deleteAct);
+
+  saveAct.textContent = 'Save';
+  deleteAct.textContent = 'Delete Activity';
+  collapseAct.textContent = 'Collapse';
+
+  // Save Function
+  // Remove Act
+  // Collapse
+  collapseAct.onclick = () => {
+    console.log('Collapse Clicked');
+    collapseCurrentAct();
+  };
 
   editActDiv.appendChild(editActForm);
   return editActDiv;
