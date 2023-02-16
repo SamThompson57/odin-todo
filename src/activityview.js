@@ -5,7 +5,7 @@ import collapseCurrentAct from "./collapseact";
 
 // Iterrate through tthe current selection of the projects Tab and for each item build a table
 
-let currentAct = '';
+
 
 export function resetAct(){
   currentAct = ''
@@ -13,7 +13,7 @@ export function resetAct(){
 }
 
 function vpGen(project) {
-
+  let currentAct = '';
   const taskView = document.createElement('div')
 
   
@@ -79,12 +79,12 @@ function vpGen(project) {
 
     activityLine.onclick = () => {
       if (currentAct === ''){
-        activityLine.appendChild(editAct(project.tasks[prop]))
+        activityLine.appendChild(editAct(prop))
         currentAct = prop
       }else if (currentAct !== prop ){
         //need to collapse any open
         collapseCurrentAct()
-        activityLine.appendChild(editAct(project.tasks[prop]))
+        activityLine.appendChild(editAct(prop))
         currentAct = prop
       }
     };

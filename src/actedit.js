@@ -1,12 +1,17 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 // This is where we look to create a form that users can edit activities
 
+import { currentProject } from '.';
+import actRefresh from './actrefresh';
 import collapseCurrentAct from './collapseact';
 
 // Start by removing all the child nodes from all the expanded children
 
-function editAct(selectedAct) {
+function editAct(prop) {
   console.log('Building Acts');
+  const selectedAct = currentProject.tasks[prop];
+  console.log(selectedAct);
   // Remove previous displayed acts
   const editActDiv = document.createElement('div');
   editActDiv.setAttribute('id', 'editact');
@@ -157,6 +162,8 @@ function editAct(selectedAct) {
   const collapseAct = document.createElement('button');
 
   collapseAct.setAttribute('type', 'button');
+  deleteAct.setAttribute('type', 'button');
+  collapseAct.setAttribute('type', 'button');
 
   actControlDiv.appendChild(saveAct);
   actControlDiv.appendChild(collapseAct);
@@ -167,7 +174,24 @@ function editAct(selectedAct) {
   collapseAct.textContent = 'Collapse';
 
   // Save Function
+  saveAct.onclick = () => {
+    console.log('Save Clicked');
+    selectedAct.priority = editPrioritySelect.value;
+    selectedAct.description = editDescInput.value;
+    selectedAct.complete = editStatusSelect.value;
+    selectedAct.dueDate = editDateInput.value.split('-').reverse().join(' / ');
+    selectedAct.notes = editActNote.value;
+    collapseCurrentAct();
+    actRefresh();
+  };
+
   // Remove Act
+  deleteAct.onclick = () => {
+    console.log('Delete Clicked');
+    currentProject.tasks.splice(prop, 1); // May want an alert to confirm to prevent misclicks
+    actRefresh();
+  };
+
   // Collapse
   collapseAct.onclick = () => {
     console.log('Collapse Clicked');
