@@ -1,5 +1,5 @@
-import { Activity } from './projects';
-import { activities, currentProject } from '.';
+import myProjects, { Activity } from './projects';
+import displayProjects, { activities, currentIndex, currentProject, veiwPort } from '.';
 import actRefresh from './actrefresh';
 
 const controls = document.createElement('div');
@@ -7,8 +7,13 @@ const controls = document.createElement('div');
 let isBoxSpawned = false;
 
 const newActBtn = document.createElement('button');
+const deleteProject = document.createElement('button');
 controls.appendChild(newActBtn);
+controls.appendChild(deleteProject)
+deleteProject.setAttribute('class' , 'navButton')
 newActBtn.setAttribute('class', 'navButton');
+
+deleteProject.textContent = 'DELETE PROJECT'
 
 // Build the form to add additional projects.
 const actForm = document.createElement('form');
@@ -88,14 +93,11 @@ addButton.setAttribute('class', 'navButton');
 actForm.setAttribute('style', 'visibility: hidden;');
 
 function spawnActBox() {
-  console.log('Gonna Spawn a box');
   if (isBoxSpawned) {
-    console.log('Box is already existing');
     newActBtn.textContent = 'NEW ACTIVITY';
     actForm.setAttribute('style', 'visibility: hidden;');
     isBoxSpawned = false;
   } else {
-    console.log("I'm pretending to spawn a box");
     actForm.setAttribute('style', 'visibility: visible;');
     newActBtn.textContent = 'HIDE';
     isBoxSpawned = true;
@@ -106,11 +108,20 @@ function actFormSubmit() {
   //Need to add validation to make sure no empty fields are submitted
   new Activity(currentProject, actTitleInput.value, '', dateInput.value.split('-').reverse().join(' / '), prioritySelect.value, '');
 
-  console.log(currentProject)
   actRefresh()
   spawnActBox()
   
   
+}
+export const removedProject = document.createElement('div')
+
+deleteProject.onclick = () => {
+  myProjects.splice(currentIndex, 1)
+  veiwPort.removeChild(activities)
+  veiwPort.removeChild(controls)
+  displayProjects();
+  veiwPort.appendChild(removedProject)
+  removedProject.textContent = ' Project Deleted, select a new project from the left side or use the button to select a new one'
 }
 
 newActBtn.textContent = 'NEW ACTIVITY';

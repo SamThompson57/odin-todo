@@ -8,7 +8,7 @@
 import myProjects from './projects';
 import container from './newproj';
 import vpGen from './activityview';
-import controls from './newact';
+import controls, { removedProject } from './newact';
 
 const content = document.getElementById('content');
 
@@ -35,10 +35,14 @@ projDiv.setAttribute('class', 'projDiv');
 navBar.appendChild(projDiv);
 
 export let currentProject = myProjects[0];
+export let currentIndex = 0;
 export let activities = vpGen(currentProject);
 
 veiwPort.appendChild(activities);
 veiwPort.appendChild(controls);
+
+controls.setAttribute('id', 'actcontrols');
+activities.setAttribute('id', 'activities');
 
 function displayProjects() {
   while (projDiv.firstChild) {
@@ -52,10 +56,19 @@ function displayProjects() {
     projDiv.appendChild(menuItem);
     // Add the funtion for if the project is selected
     menuItem.onclick = () => {
-      veiwPort.removeChild(activities);
-      currentProject = myProjects[id];
+      if (veiwPort.querySelector('#activities') !== null) {
+        veiwPort.removeChild(activities);
+      }
+      if (veiwPort.querySelector('#actcontrols') == null) {
+        veiwPort.appendChild(controls);
+        controls.setAttribute('id', 'actcontrols');
+        veiwPort.removeChild(removedProject);
+      }
       activities = vpGen(myProjects[id]);
       veiwPort.insertBefore(activities, controls);
+      currentProject = myProjects[id];
+      currentIndex = id;
+      activities.setAttribute('id', 'activities');
     };
   }
   navBar.appendChild(container);
@@ -67,8 +80,5 @@ export default displayProjects;
 
 /*
 WHATS LEFT
-  -   Activity expand
-  -   Edit Tasks (Close, Cancel, Delete)
   -   Delete Projects
-  -   Symbol for not completed.
   */

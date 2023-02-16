@@ -3,7 +3,6 @@
 /* eslint-disable import/no-duplicates */
 // eslint-disable-next-line prefer-destructuring
 import { Project } from './projects';
-import myProjects from './projects';
 import displayProjects from './index';
 
 let isBoxSpawned = false;
@@ -45,14 +44,11 @@ addButton.setAttribute('class', 'navButton');
 projectForm.setAttribute('style', 'visibility: hidden;');
 
 function spawnBox() {
-  console.log('Gonna Spawn a box');
   if (isBoxSpawned) {
-    console.log('Box is already existing');
     newProjectBtn.textContent = 'NEW PROJECT';
     projectForm.setAttribute('style', 'visibility: hidden;');
     isBoxSpawned = false;
   } else {
-    console.log("I'm pretending to spawn a box");
     projectForm.setAttribute('style', 'visibility: visible;');
     newProjectBtn.textContent = 'HIDE';
     isBoxSpawned = true;
@@ -62,7 +58,6 @@ function spawnBox() {
 function formSubmit() {
   new Project(projTitleInput.value);
   projTitleInput.value = '';
-  console.log(myProjects);
   displayProjects();
 }
 

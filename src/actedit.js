@@ -9,9 +9,7 @@ import collapseCurrentAct from './collapseact';
 // Start by removing all the child nodes from all the expanded children
 
 function editAct(prop) {
-  console.log('Building Acts');
   const selectedAct = currentProject.tasks[prop];
-  console.log(selectedAct);
   // Remove previous displayed acts
   const editActDiv = document.createElement('div');
   editActDiv.setAttribute('id', 'editact');
@@ -56,7 +54,6 @@ function editAct(prop) {
       editPriorityInput3.setAttribute('selected', true);
       break;
     default:
-      console.log('Priority not set');
   }
 
   // Due Date
@@ -149,7 +146,6 @@ function editAct(prop) {
       editStatusInput3.setAttribute('selected', true);
       break;
     default:
-      console.log('Current Status not set');
   }
 
   // CONTROLS: Save / Delete
@@ -175,7 +171,6 @@ function editAct(prop) {
 
   // Save Function
   saveAct.onclick = () => {
-    console.log('Save Clicked');
     selectedAct.priority = editPrioritySelect.value;
     selectedAct.description = editDescInput.value;
     selectedAct.complete = editStatusSelect.value;
@@ -187,14 +182,12 @@ function editAct(prop) {
 
   // Remove Act
   deleteAct.onclick = () => {
-    console.log('Delete Clicked');
     currentProject.tasks.splice(prop, 1); // May want an alert to confirm to prevent misclicks
     actRefresh();
   };
 
   // Collapse
   collapseAct.onclick = () => {
-    console.log('Collapse Clicked');
     collapseCurrentAct();
   };
 

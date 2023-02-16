@@ -4,7 +4,6 @@ const myProjects = [];
 const exports = {};
 
 export function Project(title) {
-  console.log(`Adding project with Title: ${title}`);
   this.title = title;
   this.tasks = [];
   myProjects.push(this);

@@ -9,7 +9,6 @@ import collapseCurrentAct from "./collapseact";
 
 export function resetAct(){
   currentAct = ''
-  console.log(`Current act = ${currentAct}`)
 }
 
 function vpGen(project) {
